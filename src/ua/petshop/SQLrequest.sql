@@ -1,28 +1,24 @@
-CREATE DATABASE animal_shop;
+CREATE DATABASE animal_shops;
 
-DROP DATABASE animal_shop;
-
-CREATE TABLE IF NOT EXISTS pet_shop
+CREATE TABLE IF NOT EXISTS pet_shops
 (
     id INTEGER NOT NULL PRIMARY KEY,
     shop_name VARCHAR NOT NULL,
-    foundation_date VARCHAR NOT NULL,
+    foundation_date TIMESTAMP NOT NULL,
     number_of_employee INTEGER NOT NULL ,
     shop_addr VARCHAR NOT NULL,
     delivery_availability BOOLEAN NOT NULL,
     list_of_animal VARCHAR NOT NULL
 );
 
-INSERT INTO pet_shop
-VALUES (1, 'Zoo Land', '01.01.2000', '10', 'Sumskaya str.', true, 'dogs, cats, parrots');
+INSERT INTO pet_shops
+VALUES (1, 'Zoo Land', '2000-01-01', '10', 'Sumskaya str.', true, 'dogs, cats, parrots');
 
-DELETE FROM pet_shop
+DELETE FROM pet_shops
 WHERE shop_name = 'Zoo Land';
 
 SELECT *
-FROM pet_shop;
-
-DROP TABLE pet_shop;
+FROM pet_shops;
 
 CREATE TABLE IF NOT EXISTS pets
 (
@@ -36,7 +32,7 @@ SELECT *
 FROM pets;
 
 INSERT INTO pets
-VALUES ('Zhucka', '24', 'boy', false);
+VALUES ('Zhuchka', '24', 'boy', false);
 
 INSERT INTO pets
 VALUES ('Belka', '12', 'girl', false);
@@ -46,7 +42,7 @@ VALUES ('Muhtar', '34', 'boy', true);
 
 SELECT * FROM pets;
 
-UPDATE pets SET pets_sex = 'girl' WHERE pets_name = 'Zhucka';
+UPDATE pets SET pets_sex = 'girl' WHERE pets_name = 'Zhuchka';
 
 SELECT * FROM pets;
 
