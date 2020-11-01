@@ -2,7 +2,7 @@ CREATE DATABASE animal_shops;
 
 CREATE TABLE IF NOT EXISTS pet_shops
 (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL CONSTRAINT pet_shop_key PRIMARY KEY,
     shop_name VARCHAR NOT NULL,
     foundation_date TIMESTAMP NOT NULL,
     number_of_employee INTEGER NOT NULL ,
@@ -12,33 +12,32 @@ CREATE TABLE IF NOT EXISTS pet_shops
 );
 
 INSERT INTO pet_shops
-VALUES (1, 'Zoo Land', '2000-01-01', '10', 'Sumskaya str.', true, 'dogs, cats, parrots');
+VALUES (DEFAULT, 'Zoo Land', '2000-01-01', '10', 'Sumskaya str.', true, 'dog, cat, parrot');
 
 DELETE FROM pet_shops
 WHERE shop_name = 'Zoo Land';
 
-SELECT *
-FROM pet_shops;
+SELECT * FROM pet_shops;
 
 CREATE TABLE IF NOT EXISTS pets
 (
+    id SERIAL NOT NULL CONSTRAINT pet_key PRIMARY KEY,
     pets_name VARCHAR,
     pets_month_age INTEGER NOT NULL ,
     pets_sex VARCHAR NOT NULL ,
-    need_cell BOOLEAN NOT NULL
+    need_cell BOOLEAN NOT NULL,
+    pet_shop_id INTEGER NOT NULL,
+    CONSTRAINT fk_pet_shops_pets_id FOREIGN KEY (pet_shop_id) REFERENCES pet_shops (id)
 );
 
-SELECT *
-FROM pets;
+INSERT INTO pets
+VALUES (DEFAULT, 'Zhuchka', '24', 'boy', false, 1);
 
 INSERT INTO pets
-VALUES ('Zhuchka', '24', 'boy', false);
+VALUES (DEFAULT, 'Belka', '12', 'girl', false, 1);
 
 INSERT INTO pets
-VALUES ('Belka', '12', 'girl', false);
-
-INSERT INTO pets
-VALUES ('Muhtar', '34', 'boy', true);
+VALUES (DEFAULT, 'Muhtar', '34', 'boy', true, 1);
 
 SELECT * FROM pets;
 
