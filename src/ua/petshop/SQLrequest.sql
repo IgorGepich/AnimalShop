@@ -31,13 +31,16 @@ CREATE TABLE IF NOT EXISTS pets
 );
 
 INSERT INTO pets
-VALUES (DEFAULT, 'Zhuchka', '24', 'boy', false, 1);
+VALUES (DEFAULT, 'Zhuchka', '24', 'boy', false,
+        (SELECT id FROM pet_shops WHERE shop_name = 'Zoo Land'));
 
 INSERT INTO pets
-VALUES (DEFAULT, 'Belka', '12', 'girl', false, 1);
+VALUES (DEFAULT, 'Belka', '12', 'girl', false,
+        (SELECT id FROM pet_shops WHERE shop_name = 'Zoo Land'));
 
 INSERT INTO pets
-VALUES (DEFAULT, 'Muhtar', '34', 'boy', true, 1);
+VALUES (DEFAULT, 'Muhtar', '34', 'boy', true,
+        (SELECT id FROM pet_shops WHERE shop_name = 'Zoo Land'));
 
 SELECT * FROM pets;
 
