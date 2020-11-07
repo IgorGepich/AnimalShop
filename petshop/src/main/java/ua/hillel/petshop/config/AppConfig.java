@@ -10,23 +10,26 @@ import java.time.temporal.ChronoUnit;
 @Configuration
 public class AppConfig {
 
+    @Getter
     Clock clock = Clock.system(ZoneId.of("Europe/Kiev"));
+
+    @Getter
     Instant kharkivTime = Instant.now().plus(2L, ChronoUnit.HOURS);
 
     @Getter
-    private String appName = "Pet Shop";
+    private final String appName = "Pet Shop";
 
     @Getter
-    private String appAuthor = "Ihor Sutulov";
+    private final String appAuthor = "Ihor Sutulov";
 
     @Bean
-    public Instant getKharkivTime(){
-        return kharkivTime;
+    public Instant kharkivTime(){
+        return getKharkivTime();
     }
 
     @Bean
     public void dateKievTimeZone(){
-        LocalDateTime.ofInstant(clock.instant(), ZoneId.of("Europe/Kiev"));
+        LocalDateTime.ofInstant(getClock().instant(), ZoneId.of("Europe/Kiev"));
     }
 
     @Bean
