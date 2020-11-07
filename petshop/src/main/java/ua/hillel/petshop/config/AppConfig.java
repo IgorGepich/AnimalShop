@@ -20,7 +20,7 @@ public class AppConfig {
     private String appAuthor = "Ihor Sutulov";
 
     @Bean
-    public Instant getNowKiev(){
+    public Instant getKharkivTime(){
         return kharkivTime;
     }
 
