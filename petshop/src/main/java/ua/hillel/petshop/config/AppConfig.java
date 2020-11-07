@@ -5,11 +5,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 @Configuration
 public class AppConfig {
 
     Clock clock = Clock.system(ZoneId.of("Europe/Kiev"));
+    Instant kharkivTime = Instant.now().plus(2L, ChronoUnit.HOURS);
 
     @Getter
     private String appName = "Pet Shop";
@@ -18,8 +20,12 @@ public class AppConfig {
     private String appAuthor = "Ihor Sutulov";
 
     @Bean
+    public Instant getNowKiev(){
+        return kharkivTime;
+    }
+
+    @Bean
     public void dateKievTimeZone(){
-        System.out.println(LocalDateTime.ofInstant(clock.instant(), ZoneId.of("Europe/Kiev")));
         LocalDateTime.ofInstant(clock.instant(), ZoneId.of("Europe/Kiev"));
     }
 
