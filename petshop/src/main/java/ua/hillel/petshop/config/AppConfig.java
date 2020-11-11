@@ -1,6 +1,5 @@
 package ua.hillel.petshop.config;
 
-import lombok.Getter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,17 +9,29 @@ import java.time.temporal.ChronoUnit;
 @Configuration
 public class AppConfig {
 
-    @Getter
     Clock clock = Clock.system(ZoneId.of("Europe/Kiev"));
 
-    @Getter
     Instant kharkivTime = Instant.now().plus(2L, ChronoUnit.HOURS);
 
-    @Getter
     private final String appName = "Pet Shop";
 
-    @Getter
     private final String appAuthor = "Ihor Sutulov";
+
+    public Clock getClock() {
+        return clock;
+    }
+
+    public Instant getKharkivTime() {
+        return kharkivTime;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public String getAppAuthor() {
+        return appAuthor;
+    }
 
     @Bean
     public Instant kharkivTime(){
