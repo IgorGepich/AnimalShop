@@ -9,47 +9,31 @@ import java.time.temporal.ChronoUnit;
 @Configuration
 public class AppConfig {
 
-    Clock clock = Clock.system(ZoneId.of("Europe/Kiev"));
-
     Instant kharkivTime = Instant.now().plus(2L, ChronoUnit.HOURS);
+
+    ZonedDateTime dateKievTimeZone = ZonedDateTime.now(ZoneId.of("Europe/Kiev"));
 
     private final String appName = "Pet Shop";
 
     private final String appAuthor = "Ihor Sutulov";
 
-    public Clock getClock() {
-        return clock;
-    }
-
-    public Instant getKharkivTime() {
+    @Bean
+    public Instant kharkivTime(){
         return kharkivTime;
     }
 
-    public String getAppName() {
-        return appName;
-    }
-
-    public String getAppAuthor() {
-        return appAuthor;
-    }
-
     @Bean
-    public Instant kharkivTime(){
-        return getKharkivTime();
-    }
-
-    @Bean
-    public void dateKievTimeZone(){
-        LocalDateTime.ofInstant(getClock().instant(), ZoneId.of("Europe/Kiev"));
+    public ZonedDateTime dateKievTimeZone(){
+        return dateKievTimeZone;
     }
 
     @Bean
     public String programName(){
-        return "Application name: " + getAppName();
+        return "Application name: " + appName;
     }
 
     @Bean
     public String applicationAuthor(){
-        return "Application author: " + getAppAuthor();
+        return "Application author: " + appAuthor;
     }
 }
